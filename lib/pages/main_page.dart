@@ -52,9 +52,7 @@ class MainPageState extends State<MainPage> {
   }
 
   Image getTabImage(path) {
-    return Image.asset(path,
-        width: ScreenUtil.instance.setWidth(50),
-        height: ScreenUtil.instance.setHeight(50));
+    return Image.asset(path);
   }
 
   TextStyle getTabTextStyle(int curIndex) {

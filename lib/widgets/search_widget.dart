@@ -25,7 +25,7 @@ class SearchWidget extends StatelessWidget {
                   width: ScreenUtil.instance.setWidth(28),
                   height: ScreenUtil.instance.setWidth(28),
                   child: Image.asset(
-                    "images/ic_search",
+                    "images/ic_search.png",
                     fit: BoxFit.fill,
                   ),
                 ),
