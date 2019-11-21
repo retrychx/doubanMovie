@@ -20,18 +20,22 @@ class HotPlayState extends State<HotPlay> {
   init() async {
     Map res = await api.getHotMovies();
     model = MovieModel.fromJson(res);
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: new ListView.builder(
-        padding: EdgeInsets.only(
-            left: ScreenUtil().setWidth(20), right: ScreenUtil().setWidth(20)),
-        itemBuilder: (BuildContext context, int index) =>
-            new MovieDetail(true, model.subjects[index]),
-        itemCount: model.subjects.length,
-      ),
-    );
+    return model == null
+        ? Center(child: CircularProgressIndicator())
+        : Container(
+            child: new ListView.builder(
+              padding: EdgeInsets.only(
+                  left: ScreenUtil().setWidth(20),
+                  right: ScreenUtil().setWidth(20)),
+              itemBuilder: (BuildContext context, int index) =>
+                  new MovieDetail(true, model.subjects[index]),
+              itemCount: model.subjects.length,
+            ),
+          );
   }
 }

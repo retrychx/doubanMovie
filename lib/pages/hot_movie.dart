@@ -47,12 +47,12 @@ class HotMovieState extends State<HotMovie> with TickerProviderStateMixin {
                   top: ScreenUtil.instance.setWidth(10)),
               unselectedLabelColor: Color.fromARGB(100, 51, 51, 51),
               unselectedLabelStyle: TextStyle(
-                fontSize: ScreenUtil.instance.setSp(28),
+                fontSize: ScreenUtil.instance.setSp(36),
                 fontWeight: FontWeight.bold,
               ),
               labelColor: Color.fromARGB(255, 51, 51, 51),
               labelStyle: TextStyle(
-                fontSize: ScreenUtil.instance.setSp(28),
+                fontSize: ScreenUtil.instance.setSp(36),
                 fontWeight: FontWeight.bold,
               ),
               onTap: (index) {

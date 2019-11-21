@@ -22,8 +22,8 @@ class SearchWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  width: ScreenUtil.instance.setWidth(28),
-                  height: ScreenUtil.instance.setWidth(28),
+                  width: ScreenUtil.instance.setWidth(36),
+                  height: ScreenUtil.instance.setWidth(36),
                   child: Image.asset(
                     "images/ic_search.png",
                     fit: BoxFit.fill,
@@ -35,7 +35,7 @@ class SearchWidget extends StatelessWidget {
                   child: Text("电影/电视剧/影人",
                       style: TextStyle(
                           color: Color.fromARGB(255, 167, 161, 164),
-                          fontSize: ScreenUtil.instance.setSp(26))),
+                          fontSize: ScreenUtil.instance.setSp(36))),
                 )
               ],
             ),
