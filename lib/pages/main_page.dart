@@ -14,8 +14,10 @@ class MainPage extends StatefulWidget {
 class MainPageState extends State<MainPage> {
   final titles = ["热映", "找片", "我的"];
   final pages = [HotMovie(), FindMovie(), AboutMe()];
-  final tabTextStyleselected = TextStyle(color: HexColor("#515151"));
-  final tabTextStyleNormal = TextStyle(color: HexColor("#696969"));
+  final tabTextStyleselected =
+      TextStyle(color: HexColor("#515151"), fontSize: ScreenUtil().setSp(38));
+  final tabTextStyleNormal =
+      TextStyle(color: HexColor("#696969"), fontSize: ScreenUtil().setSp(38));
 
   int currentIndex = 0;
   var tabImages;
@@ -52,7 +54,8 @@ class MainPageState extends State<MainPage> {
   }
 
   Image getTabImage(path) {
-    return Image.asset(path);
+    return Image.asset(path,
+        width: ScreenUtil().setWidth(50), height: ScreenUtil().setWidth(50));
   }
 
   TextStyle getTabTextStyle(int curIndex) {

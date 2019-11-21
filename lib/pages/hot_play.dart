@@ -1,6 +1,8 @@
+import 'package:douban/widgets/movie_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:douban/api/http.dart' as api;
 import 'package:douban/models/movie_model.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HotPlay extends StatefulWidget {
   @override
@@ -8,6 +10,7 @@ class HotPlay extends StatefulWidget {
 }
 
 class HotPlayState extends State<HotPlay> {
+  static MovieModel model;
   @override
   void initState() {
     super.initState();
@@ -16,14 +19,19 @@ class HotPlayState extends State<HotPlay> {
 
   init() async {
     Map res = await api.getHotMovies();
-    var model = MovieModel.fromJson(res);
-    print(model.subjects);
+    model = MovieModel.fromJson(res);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('123'),
+      child: new ListView.builder(
+        padding: EdgeInsets.only(
+            left: ScreenUtil().setWidth(20), right: ScreenUtil().setWidth(20)),
+        itemBuilder: (BuildContext context, int index) =>
+            new MovieDetail(true, model.subjects[index]),
+        itemCount: model.subjects.length,
+      ),
     );
   }
 }
