@@ -25,7 +25,7 @@ class HotMovieState extends State<HotMovie> with TickerProviderStateMixin {
     pageController = PageController(initialPage: currentPage, keepPage: true);
     return Scaffold(
       appBar: AppBarContainer(
-        height: ScreenUtil.instance.setHeight(180),
+        height: ScreenUtil.instance.setHeight(200),
         child: Column(
           children: <Widget>[
             Container(

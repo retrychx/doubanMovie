@@ -19,13 +19,13 @@ class MovieInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     isShow = isOnShow();
-    initPersons();
+    isShowStar ? initPersons("看过") : initPersons("想看");
     return Container(
         child: GestureDetector(
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (BuildContext context) {
-                return MovieDetail();
+                return MovieDetail(this.subject.id);
               }));
             },
             child: Column(
@@ -58,39 +58,7 @@ class MovieInfo extends StatelessWidget {
                                     fontSize: ScreenUtil().setSp(42),
                                     fontWeight: FontWeight.bold),
                               )),
-                          this.isShow
-                              ? Container(
-                                  width: ScreenUtil().setWidth(300),
-                                  child: Row(
-                                    children: <Widget>[
-                                      StaticRatingBar(
-                                        rate: this.subject.rating.average / 2,
-                                        size: ScreenUtil().setWidth(36),
-                                        count: 5,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.all(
-                                            ScreenUtil().setWidth(10)),
-                                        child: Text(
-                                          this
-                                              .subject
-                                              .rating
-                                              .average
-                                              .toString(),
-                                          style: TextStyle(
-                                              fontSize: ScreenUtil().setSp(28),
-                                              color: HexColor("#888888")),
-                                        ),
-                                      )
-                                    ],
-                                  ))
-                              : Padding(
-                                  padding:
-                                      EdgeInsets.all(ScreenUtil().setWidth(6)),
-                                  child: Text("尚未上映",
-                                      style: TextStyle(
-                                          fontSize: ScreenUtil().setSp(28),
-                                          color: HexColor("#888888")))),
+                          isShowStar ? getStar() : Container(),
                           Container(
                               padding: EdgeInsets.only(
                                   top: ScreenUtil().setWidth(6),
@@ -122,87 +90,7 @@ class MovieInfo extends StatelessWidget {
                         ],
                       ),
                     ),
-                    this.isShow
-                        ? Container(
-                            width: ScreenUtil().setWidth(220),
-                            height: ScreenUtil().setWidth(300),
-                            padding: EdgeInsets.only(
-                                top: ScreenUtil().setHeight(70)),
-                            child: Column(
-                              children: <Widget>[
-                                Text(
-                                  "${this.count}",
-                                  style: TextStyle(
-                                      fontSize: ScreenUtil().setSp(28),
-                                      color: HexColor("#FF3366")),
-                                ),
-                                Padding(
-                                    padding: EdgeInsets.all(
-                                        ScreenUtil().setWidth(10))),
-                                Container(
-                                  width: ScreenUtil().setWidth(150),
-                                  height: ScreenUtil().setHeight(54),
-                                  child: GestureDetector(
-                                      onTap: getTicket,
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                            borderRadius: new BorderRadius.all(
-                                                Radius.circular(
-                                                    ScreenUtil().setWidth(5))),
-                                            border: Border.all(
-                                                color: HexColor("#FF3366"),
-                                                width: 0.5)),
-                                        child: Text("购票",
-                                            style: TextStyle(
-                                                fontSize:
-                                                    ScreenUtil().setSp(28),
-                                                color: HexColor("#FF3366"))),
-                                      )),
-                                )
-                              ],
-                            ),
-                          )
-                        : Container(
-                            width: ScreenUtil().setWidth(220),
-                            height: ScreenUtil().setWidth(300),
-                            padding: EdgeInsets.only(
-                                top: ScreenUtil().setHeight(70)),
-                            child: Column(
-                              children: <Widget>[
-                                Text(
-                                  "${this.count}",
-                                  style: TextStyle(
-                                      fontSize: ScreenUtil().setSp(28),
-                                      color: HexColor("#F2A325")),
-                                ),
-                                Padding(
-                                    padding: EdgeInsets.all(
-                                        ScreenUtil().setWidth(10))),
-                                Container(
-                                  width: ScreenUtil().setWidth(150),
-                                  height: ScreenUtil().setHeight(54),
-                                  child: GestureDetector(
-                                      onTap: getTicket,
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                            borderRadius: new BorderRadius.all(
-                                                Radius.circular(
-                                                    ScreenUtil().setWidth(5))),
-                                            border: Border.all(
-                                                color: HexColor("#F2A325"),
-                                                width: 0.5)),
-                                        child: Text("预售",
-                                            style: TextStyle(
-                                                fontSize:
-                                                    ScreenUtil().setSp(28),
-                                                color: HexColor("#F2A325"))),
-                                      )),
-                                )
-                              ],
-                            ),
-                          ),
+                    this.isShowStar ? getOnSale() : getWillSale()
                   ],
                 ),
                 Container(
@@ -212,6 +100,144 @@ class MovieInfo extends StatelessWidget {
                 ),
               ],
             )));
+  }
+
+  Widget getWillSale() {
+    return Container(
+      width: ScreenUtil().setWidth(220),
+      height: ScreenUtil().setWidth(300),
+      padding: EdgeInsets.only(top: ScreenUtil().setHeight(70)),
+      child: Column(
+        children: <Widget>[
+          Text(
+            "${this.count}",
+            style: TextStyle(
+                fontSize: ScreenUtil().setSp(28), color: HexColor("#F2A325")),
+          ),
+          Padding(padding: EdgeInsets.all(ScreenUtil().setWidth(10))),
+          Container(
+            width: ScreenUtil().setWidth(150),
+            height: ScreenUtil().setHeight(54),
+            child: GestureDetector(
+                onTap: getTicket,
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      borderRadius: new BorderRadius.all(
+                          Radius.circular(ScreenUtil().setWidth(5))),
+                      border:
+                          Border.all(color: HexColor("#F2A325"), width: 0.5)),
+                  child: Text("想看",
+                      style: TextStyle(
+                          fontSize: ScreenUtil().setSp(28),
+                          color: HexColor("#F2A325"))),
+                )),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget getOnSale() {
+    return this.isShow
+        ? Container(
+            width: ScreenUtil().setWidth(220),
+            height: ScreenUtil().setWidth(300),
+            padding: EdgeInsets.only(top: ScreenUtil().setHeight(70)),
+            child: Column(
+              children: <Widget>[
+                Text(
+                  "${this.count}",
+                  style: TextStyle(
+                      fontSize: ScreenUtil().setSp(28),
+                      color: HexColor("#FF3366")),
+                ),
+                Padding(padding: EdgeInsets.all(ScreenUtil().setWidth(10))),
+                Container(
+                  width: ScreenUtil().setWidth(150),
+                  height: ScreenUtil().setHeight(54),
+                  child: GestureDetector(
+                      onTap: getTicket,
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            borderRadius: new BorderRadius.all(
+                                Radius.circular(ScreenUtil().setWidth(5))),
+                            border: Border.all(
+                                color: HexColor("#FF3366"), width: 0.5)),
+                        child: Text("购票",
+                            style: TextStyle(
+                                fontSize: ScreenUtil().setSp(28),
+                                color: HexColor("#FF3366"))),
+                      )),
+                )
+              ],
+            ),
+          )
+        : Container(
+            width: ScreenUtil().setWidth(220),
+            height: ScreenUtil().setWidth(300),
+            padding: EdgeInsets.only(top: ScreenUtil().setHeight(70)),
+            child: Column(
+              children: <Widget>[
+                Text(
+                  "${this.count}",
+                  style: TextStyle(
+                      fontSize: ScreenUtil().setSp(28),
+                      color: HexColor("#F2A325")),
+                ),
+                Padding(padding: EdgeInsets.all(ScreenUtil().setWidth(10))),
+                Container(
+                  width: ScreenUtil().setWidth(150),
+                  height: ScreenUtil().setHeight(54),
+                  child: GestureDetector(
+                      onTap: getTicket,
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            borderRadius: new BorderRadius.all(
+                                Radius.circular(ScreenUtil().setWidth(5))),
+                            border: Border.all(
+                                color: HexColor("#F2A325"), width: 0.5)),
+                        child: Text("预售",
+                            style: TextStyle(
+                                fontSize: ScreenUtil().setSp(28),
+                                color: HexColor("#F2A325"))),
+                      )),
+                )
+              ],
+            ),
+          );
+  }
+
+  Widget getStar() {
+    return this.isShow
+        ? Container(
+            width: ScreenUtil().setWidth(300),
+            child: Row(
+              children: <Widget>[
+                StaticRatingBar(
+                  rate: this.subject.rating.average / 2,
+                  size: ScreenUtil().setWidth(36),
+                  count: 5,
+                ),
+                Padding(
+                  padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
+                  child: Text(
+                    this.subject.rating.average.toString(),
+                    style: TextStyle(
+                        fontSize: ScreenUtil().setSp(28),
+                        color: HexColor("#888888")),
+                  ),
+                )
+              ],
+            ))
+        : Padding(
+            padding: EdgeInsets.all(ScreenUtil().setWidth(6)),
+            child: Text("尚未上映",
+                style: TextStyle(
+                    fontSize: ScreenUtil().setSp(28),
+                    color: HexColor("#888888"))));
   }
 
   bool isOnShow() {
@@ -227,7 +253,7 @@ class MovieInfo extends StatelessWidget {
 
   void getTicket() {}
 
-  void initPersons() {
+  void initPersons(String content) {
     this.directors = "";
     this.casts = "";
     this.count = "";
@@ -247,10 +273,11 @@ class MovieInfo extends StatelessWidget {
       }
     }
     if (this.subject.collect_count > 9999) {
-      this.count =
-          (this.subject.collect_count / 10000).toStringAsFixed(1) + "万人看过";
+      this.count = (this.subject.collect_count / 10000).toStringAsFixed(1) +
+          "万人" +
+          content;
     } else {
-      this.count = this.subject.collect_count.toString() + "人看过";
+      this.count = this.subject.collect_count.toString() + "人" + content;
     }
   }
 }

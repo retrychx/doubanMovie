@@ -132,7 +132,8 @@ class Director {
   Director({this.avatars, this.nameEn, this.name, this.alt, this.id});
 
   Director.fromJson(Map<String, dynamic> json) {
-    avatars = Avatars.fromJson(json['avatars']);
+    avatars =
+        json['avatars'] == null ? null : Avatars.fromJson(json['avatars']);
     nameEn = json['name_en'];
     name = json['name'];
     alt = json['alt'];

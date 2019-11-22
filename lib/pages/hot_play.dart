@@ -4,12 +4,19 @@ import 'package:douban/api/http.dart' as api;
 import 'package:douban/models/movie_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+class HotMovie extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return HotPlay();
+  }
+}
+
 class HotPlay extends StatefulWidget {
   @override
   HotPlayState createState() => HotPlayState();
 }
 
-class HotPlayState extends State<HotPlay> {
+class HotPlayState extends State<HotPlay> with AutomaticKeepAliveClientMixin {
   static MovieModel model;
   @override
   void initState() {
@@ -17,10 +24,15 @@ class HotPlayState extends State<HotPlay> {
     init();
   }
 
+  @override
+  bool get wantKeepAlive => true;
+
   init() async {
     Map res = await api.getHotMovies();
     model = MovieModel.fromJson(res);
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override
