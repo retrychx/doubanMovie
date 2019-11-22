@@ -1,4 +1,4 @@
-import 'package:douban/widgets/movie_detail.dart';
+import 'package:douban/widgets/movie_info.dart';
 import 'package:flutter/material.dart';
 import 'package:douban/api/http.dart' as api;
 import 'package:douban/models/movie_model.dart';
@@ -33,7 +33,7 @@ class HotPlayState extends State<HotPlay> {
                   left: ScreenUtil().setWidth(20),
                   right: ScreenUtil().setWidth(20)),
               itemBuilder: (BuildContext context, int index) =>
-                  new MovieDetail(true, model.subjects[index]),
+                  new MovieInfo(true, model.subjects[index]),
               itemCount: model.subjects.length,
             ),
           );
