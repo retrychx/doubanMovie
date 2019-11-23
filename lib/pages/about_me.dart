@@ -8,10 +8,35 @@ class AboutMe extends StatefulWidget {
 }
 
 class AboutMeState extends State<AboutMe> {
+  final tabTitles = ["想看", "在看", "看过", "影评", "影人"];
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: header(),
+        child: Column(
+      children: <Widget>[header(), tabs()],
+    ));
+  }
+
+  Widget tabs() {
+    return Container(
+      width: double.infinity,
+      height: ScreenUtil().setWidth(150),
+      child: new ListView.builder(
+        scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.only(
+            left: ScreenUtil().setWidth(20), right: ScreenUtil().setWidth(20)),
+        itemBuilder: (BuildContext context, int index) => Padding(
+          padding: EdgeInsets.only(
+              top: ScreenUtil().setWidth(10),
+              left: ScreenUtil().setWidth(20),
+              right: ScreenUtil().setWidth(20)),
+          child: Text(
+            tabTitles[index],
+            style: TextStyle(fontSize: ScreenUtil().setSp(40)),
+          ),
+        ),
+        itemCount: tabTitles.length,
+      ),
     );
   }
 
@@ -19,7 +44,7 @@ class AboutMeState extends State<AboutMe> {
     return Container(
         width: double.infinity,
         height: ScreenUtil().setHeight(350),
-        color: HexColor("#004400"),
+        color: HexColor("#005500"),
         child: Padding(
           padding: EdgeInsets.only(top: ScreenUtil().setWidth(140)),
           child: Row(
