@@ -1,3 +1,4 @@
+import 'package:douban/pages/setting_page.dart';
 import 'package:flutter/material.dart';
 import 'package:douban/utils/hex_color.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,25 +20,26 @@ class AboutMeState extends State<AboutMe> {
 
   Widget tabs() {
     return Container(
-      width: double.infinity,
-      height: ScreenUtil().setWidth(150),
-      child: new ListView.builder(
-        scrollDirection: Axis.horizontal,
-        padding: EdgeInsets.only(
-            left: ScreenUtil().setWidth(20), right: ScreenUtil().setWidth(20)),
-        itemBuilder: (BuildContext context, int index) => Padding(
-          padding: EdgeInsets.only(
-              top: ScreenUtil().setWidth(10),
-              left: ScreenUtil().setWidth(20),
-              right: ScreenUtil().setWidth(20)),
-          child: Text(
-            tabTitles[index],
-            style: TextStyle(fontSize: ScreenUtil().setSp(40)),
+        width: double.infinity,
+        height: ScreenUtil().setWidth(150),
+        child: DefaultTabController(
+          length: tabTitles.length,
+          child: TabBar(
+            labelColor: Colors.black,
+            indicatorColor: Colors.black,
+            indicatorWeight: 1,
+            labelStyle: TextStyle(
+              fontSize: ScreenUtil().setSp(40),
+            ),
+            tabs: <Widget>[
+              Text("想看"),
+              Text("在看"),
+              Text("看过"),
+              Text("影评"),
+              Text("影人"),
+            ],
           ),
-        ),
-        itemCount: tabTitles.length,
-      ),
-    );
+        ));
   }
 
   Widget header() {
@@ -65,7 +67,11 @@ class AboutMeState extends State<AboutMe> {
         ));
   }
 
-  void getSetting() {}
+  void getSetting() {
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+      return SettingPage();
+    }));
+  }
 
   Widget login() {
     return Container(
