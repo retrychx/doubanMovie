@@ -6,4 +6,7 @@ class Api {
 
   static String WillOnSale =
       "https://douban-api.uieee.com/v2/movie/coming_soon";
+
+  // 电影详情
+  static String MovieDetail = "https://douban-api.uieee.com/v2/movie/subject/";
 }

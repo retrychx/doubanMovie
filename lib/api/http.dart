@@ -19,3 +19,14 @@ getWillMovies() async {
     print("request failt ${res.statusCode}");
   }
 }
+
+getMovieDetail(String id) async {
+  var movieId = Api.MovieDetail + id;
+  var res = await http.get(movieId);
+
+  if (res.statusCode == 200) {
+    return convert.jsonDecode(res.body);
+  } else {
+    print("request failt ${res.statusCode}");
+  }
+}

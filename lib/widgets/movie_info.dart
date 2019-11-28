@@ -25,7 +25,7 @@ class MovieInfo extends StatelessWidget {
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (BuildContext context) {
-                return MovieDetail(this.subject.id);
+                return MovieDetail(id: this.subject.id);
               }));
             },
             child: Column(
