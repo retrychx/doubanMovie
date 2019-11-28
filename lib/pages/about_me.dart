@@ -45,7 +45,7 @@ class AboutMeState extends State<AboutMe> {
   Widget header() {
     return Container(
         width: double.infinity,
-        height: ScreenUtil().setHeight(350),
+        height: ScreenUtil().setHeight(400),
         color: HexColor("#005500"),
         child: Padding(
           padding: EdgeInsets.only(top: ScreenUtil().setWidth(140)),
