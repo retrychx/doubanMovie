@@ -112,7 +112,8 @@ class MovieDetaiModel {
     original_title = json['original_title'];
     bloopers = json['bloopers'].cast<String>();
     collect_count = json['collect_count'] as int;
-    images = json['image'] == null ? null : ImageModel.fromJson(json['image']);
+    images =
+        json['images'] == null ? null : ImageModel.fromJson(json['images']);
     douban_site = json['douban_site'];
     year = json['year'];
     popular_comments = (json['popular_comments'] as List)

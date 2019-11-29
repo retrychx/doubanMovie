@@ -115,7 +115,7 @@ class ImageModel {
 
   ImageModel({this.small, this.large, this.medium});
 
-  ImageModel.fromJson(Map json) {
+  ImageModel.fromJson(Map<String, dynamic> json) {
     small = json['small'];
     large = json['large'];
     medium = json['medium'];
