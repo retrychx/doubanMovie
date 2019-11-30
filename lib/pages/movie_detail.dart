@@ -40,7 +40,8 @@ class MovieDetailState extends State<MovieDetail> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(ScreenUtil().setHeight(150)),
         child: AppBar(
-          backgroundColor: palette.dominantColor.color,
+          backgroundColor:
+              palette == null ? Colors.white : palette.dominantColor.color,
           elevation: 0,
           title: getTitle(),
           centerTitle: true,
