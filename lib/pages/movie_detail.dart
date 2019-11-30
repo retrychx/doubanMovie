@@ -13,9 +13,13 @@ class MovieDetail extends StatefulWidget {
   MovieDetailState createState() => MovieDetailState();
 }
 
-class MovieDetailState extends State<MovieDetail> {
+class MovieDetailState extends State<MovieDetail>
+    with AutomaticKeepAliveClientMixin {
   static MovieDetaiModel model;
   PaletteGenerator palette;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {

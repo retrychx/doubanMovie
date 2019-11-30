@@ -35,7 +35,7 @@ class MovieHeader extends StatelessWidget {
   Widget headerStar() {
     return Container(
       width: ScreenUtil().setWidth(220),
-      height: ScreenUtil().setWidth(210),
+      height: ScreenUtil().setWidth(220),
       decoration: BoxDecoration(color: Colors.white, boxShadow: [
         BoxShadow(
             color: HexColor("#dddddd"),
@@ -48,7 +48,7 @@ class MovieHeader extends StatelessWidget {
           Text(
             "豆瓣评分",
             style: TextStyle(
-                fontSize: ScreenUtil().setSp(28), color: HexColor("#AAAAAA")),
+                fontSize: ScreenUtil().setSp(30), color: HexColor("#AAAAAA")),
           ),
           Text(
             model.rating.average.toString(),
@@ -57,13 +57,13 @@ class MovieHeader extends StatelessWidget {
           ),
           StaticRatingBar(
             rate: model.rating.average / 2,
-            size: ScreenUtil().setWidth(28),
+            size: ScreenUtil().setWidth(30),
             count: 5,
           ),
           Text(
             "${model.ratings_count}人",
             style: TextStyle(
-                fontSize: ScreenUtil().setSp(28), color: HexColor("#888888")),
+                fontSize: ScreenUtil().setSp(30), color: HexColor("#888888")),
           )
         ],
       ),
@@ -78,7 +78,7 @@ class MovieHeader extends StatelessWidget {
             Text(
               "剧情简介",
               style: TextStyle(
-                  fontSize: ScreenUtil().setSp(28), color: HexColor("#888888")),
+                  fontSize: ScreenUtil().setSp(32), color: HexColor("#888888")),
             ),
             Padding(
                 padding: EdgeInsets.only(bottom: ScreenUtil().setWidth(20))),
@@ -86,7 +86,7 @@ class MovieHeader extends StatelessWidget {
               model.summary,
               textAlign: TextAlign.justify,
               style: TextStyle(
-                  fontSize: ScreenUtil().setSp(32),
+                  fontSize: ScreenUtil().setSp(36),
                   fontWeight: FontWeight.bold),
             )
           ]),
@@ -96,7 +96,7 @@ class MovieHeader extends StatelessWidget {
   Widget getContent() {
     return Container(
       height: ScreenUtil().setWidth(280),
-      width: ScreenUtil().setWidth(600),
+      width: ScreenUtil().setWidth(800),
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -110,19 +110,19 @@ class MovieHeader extends StatelessWidget {
                     bottom: ScreenUtil().setWidth(8))),
             Text(movieType(),
                 style: TextStyle(
-                    fontSize: ScreenUtil().setSp(28),
+                    fontSize: ScreenUtil().setSp(30),
                     color: HexColor("#666666"))),
             Text("原名：${model.original_title}",
                 style: TextStyle(
-                    fontSize: ScreenUtil().setSp(28),
+                    fontSize: ScreenUtil().setSp(30),
                     color: HexColor("#666666"))),
             Text("上映时间：${model.pubdates.last}",
                 style: TextStyle(
-                    fontSize: ScreenUtil().setSp(28),
+                    fontSize: ScreenUtil().setSp(30),
                     color: HexColor("#666666"))),
             Text("片长：${model.durations[0]}",
                 style: TextStyle(
-                    fontSize: ScreenUtil().setSp(28),
+                    fontSize: ScreenUtil().setSp(30),
                     color: HexColor("#666666")))
           ]),
     );
@@ -131,14 +131,14 @@ class MovieHeader extends StatelessWidget {
   String movieType() {
     String type = '';
 
-    type += model.year + " /";
+    type += model.year + " / ";
 
     for (var i = 0; i < model.countries.length; i++) {
-      type += model.countries[i] + " /";
+      type += model.countries[i] + " / ";
     }
     for (var i = 0; i < model.genres.length; i++) {
       if (i != model.genres.length - 1) {
-        type += model.genres[i] + " /";
+        type += model.genres[i] + " / ";
       } else {
         type += model.genres[i];
       }
